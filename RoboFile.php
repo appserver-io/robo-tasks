@@ -18,9 +18,6 @@
  * @link      http://www.appserver.io
  */
 
-use Lurker\Event\FilesystemEvent;
-
-use Symfony\Component\Finder\Finder;
 use AppserverIo\RoboTasks\Base\loadTasks;
 use AppserverIo\RoboTasks\AbstractRoboFile;
 
