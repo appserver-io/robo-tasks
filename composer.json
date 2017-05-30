@@ -1,6 +1,6 @@
 {
     "name": "appserver-io/robo-tasks",
-    "description": "Some tasks to improve the development process",
+    "description": "Some Robo (http://robo.li) tasks to improve the development process",
     "minimum-stability": "alpha",
     "license": "OSL-3.0",
     "require" : {
