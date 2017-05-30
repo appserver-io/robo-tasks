@@ -7,7 +7,7 @@
         "php": ">=5.6.0",
         "consolidation/robo": "~1.0",
         "henrikbjorn/lurker" : "~1.0",
-        "appserver-io/properties" : "~3.0"
+        "appserver-io/properties" : "~2.0"
     },
     "require-dev": {
         "phpmd/phpmd": "2.5.*",
