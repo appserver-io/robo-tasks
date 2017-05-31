@@ -1,7 +1,7 @@
 <?php
 
 /**
- * AppserverIo\RoboTasks\PropertyKeys
+ * AppserverIo\RoboTasks\InputOptionKeys
  *
  * NOTICE OF LICENSE
  *
@@ -21,7 +21,7 @@
 namespace AppserverIo\RoboTasks;
 
 /**
- * The default property keys.
+ * The default input option keys.
  *
  * @author    Tim Wagner <tw@appserver.io>
  * @copyright 2015 TechDivision GmbH <info@appserver.io>
@@ -29,48 +29,20 @@ namespace AppserverIo\RoboTasks;
  * @link      https://github.com/appserver-io/robo-tasks
  * @link      http://www.appserver.io
  */
-class PropertyKeys
+class InputOptionKeys
 {
 
     /**
-     * The property key for the "base.dir".
+     * The option key for the source directory.
      *
      * @var string
      */
-    const BASE_DIR = 'base.dir';
+    const SRC_DIR = 'src-dir';
 
     /**
-     * The property key for the "src.dir".
+     * The option key for the target directory.
      *
      * @var string
      */
-    const SRC_DIR = 'src.dir';
-
-    /**
-     * The property key for the "dist.dir".
-     *
-     * @var string
-     */
-    const DIST_DIR = 'dist.dir';
-
-    /**
-     * The property key for the "target.dir".
-     *
-     * @var string
-     */
-    const TARGET_DIR = 'target.dir';
-
-    /**
-     * The property key for the "vendor.dir".
-     *
-     * @var string
-     */
-    const VENDOR_DIR = 'vendor.dir';
-
-    /**
-     * The property key for the "reports.dir".
-     *
-     * @var string
-     */
-    const REPORTS_DIR = 'reports.dir';
+    const TARGET_DIR = 'target-dir';
 }

@@ -18,7 +18,6 @@
  * @link      http://www.appserver.io
  */
 
-use AppserverIo\RoboTasks\Base\loadTasks;
 use AppserverIo\RoboTasks\AbstractRoboFile;
 
 /**
@@ -34,13 +33,6 @@ use AppserverIo\RoboTasks\AbstractRoboFile;
  */
 class RoboFile extends AbstractRoboFile
 {
-
-    /**
-     * Load the libraries tasks.
-     *
-     * @param \AppserverIo\RoboTasks\Base\loadTasks
-     */
-    use loadTasks;
 
     /**
      * Run's the composer install command.
