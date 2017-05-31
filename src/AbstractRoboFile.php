@@ -52,14 +52,6 @@ abstract class AbstractRoboFile extends Tasks
         // initialize the build properties
         $this->properties = Properties::create();
 
-        // set the default properties
-        $this->properties->setProperty(PropertyKeys::BASE_DIR, getcwd());
-        $this->properties->setProperty(PropertyKeys::SRC_DIR, '${base.dir}/src');
-        $this->properties->setProperty(PropertyKeys::DIST_DIR, '${base.dir}/dist');
-        $this->properties->setProperty(PropertyKeys::VENDOR_DIR, '${base.dir}/vendor');
-        $this->properties->setProperty(PropertyKeys::TARGET_DIR, '${base.dir}/target');
-        $this->properties->setProperty(PropertyKeys::REPORTS_DIR, '${target.dir}/reports');
-
         // load properties from build.properties file
         if (file_exists($buildProperties = getcwd() . '/build.properties')) {
             $this->properties->mergeProperties(Properties::create()->load($buildProperties));
@@ -69,6 +61,14 @@ abstract class AbstractRoboFile extends Tasks
         if (file_exists($buildDefaultProperties = getcwd() . '/build.default.properties')) {
             $this->properties->mergeProperties(Properties::create()->load($buildDefaultProperties));
         }
+
+        // initialize the default properties
+        $this->properties->setProperty(PropertyKeys::BASE_DIR, getcwd());
+        $this->properties->setProperty(PropertyKeys::SRC_DIR, '${base.dir}/src');
+        $this->properties->setProperty(PropertyKeys::DIST_DIR, '${base.dir}/dist');
+        $this->properties->setProperty(PropertyKeys::VENDOR_DIR, '${base.dir}/vendor');
+        $this->properties->setProperty(PropertyKeys::TARGET_DIR, '${base.dir}/target');
+        $this->properties->setProperty(PropertyKeys::REPORTS_DIR, '${target.dir}/reports');
 
         // replace the variables in the properties
         PropertiesUtil::singleton()->replaceProperties($this->properties);
