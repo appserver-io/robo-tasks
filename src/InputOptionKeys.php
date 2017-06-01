@@ -37,12 +37,12 @@ class InputOptionKeys
      *
      * @var string
      */
-    const SRC_DIR = 'src-dir';
+    const SRC = 'src';
 
     /**
-     * The option key for the target directory.
+     * The option key for the destination directory.
      *
      * @var string
      */
-    const TARGET_DIR = 'target-dir';
+    const DEST = 'dest';
 }
