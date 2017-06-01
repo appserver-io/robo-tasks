@@ -1,7 +1,7 @@
 <?php
 
 /**
- * AppserverIo\RoboTasks\PropertyKeys
+ * AppserverIo\RoboTasks\ConfigurationKeys
  *
  * NOTICE OF LICENSE
  *
@@ -21,7 +21,7 @@
 namespace AppserverIo\RoboTasks;
 
 /**
- * The default property keys.
+ * The default configuration keys.
  *
  * @author    Tim Wagner <tw@appserver.io>
  * @copyright 2015 TechDivision GmbH <info@appserver.io>
@@ -29,48 +29,41 @@ namespace AppserverIo\RoboTasks;
  * @link      https://github.com/appserver-io/robo-tasks
  * @link      http://www.appserver.io
  */
-class PropertyKeys
+class ConfigurationKeys
 {
 
     /**
-     * The property key for the "base.dir".
+     * The key for the configuration value that contains the directories.
      *
      * @var string
      */
-    const BASE_DIR = 'base.dir';
+    const DIRS = 'dirs';
 
     /**
-     * The property key for the "src.dir".
+     * The key for the configuration value that contains the value for the source directory.
      *
      * @var string
      */
-    const SRC_DIR = 'src.dir';
+    const SRC = 'src';
 
     /**
-     * The property key for the "dist.dir".
+     * The key for the configuration value that contains the value for the target directory.
      *
      * @var string
      */
-    const DIST_DIR = 'dist.dir';
+    const TARGET = 'target';
 
     /**
-     * The property key for the "target.dir".
+     * The key for the configuration value that contains the value for the vendor directory.
      *
      * @var string
      */
-    const TARGET_DIR = 'target.dir';
+    const VENDOR = 'vendor';
 
     /**
-     * The property key for the "vendor.dir".
+     * The key for the configuration value that contains the value for the report directory.
      *
      * @var string
      */
-    const VENDOR_DIR = 'vendor.dir';
-
-    /**
-     * The property key for the "reports.dir".
-     *
-     * @var string
-     */
-    const REPORTS_DIR = 'reports.dir';
+    const REPORTS = 'reports';
 }

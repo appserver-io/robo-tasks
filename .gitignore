@@ -3,4 +3,5 @@
 .buildpath
 .project
 .settings
+robo.yml
 composer.lock

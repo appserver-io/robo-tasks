@@ -18,8 +18,8 @@
  * @link      http://www.appserver.io
  */
 
-use AppserverIo\RoboTasks\Base\loadTasks;
 use AppserverIo\RoboTasks\AbstractRoboFile;
+use Robo\Robo;
 
 /**
  * Defines the available build tasks.
@@ -34,13 +34,6 @@ use AppserverIo\RoboTasks\AbstractRoboFile;
  */
 class RoboFile extends AbstractRoboFile
 {
-
-    /**
-     * Load the libraries tasks.
-     *
-     * @param \AppserverIo\RoboTasks\Base\loadTasks
-     */
-    use loadTasks;
 
     /**
      * Run's the composer install command.
@@ -88,7 +81,6 @@ class RoboFile extends AbstractRoboFile
     public function prepare()
     {
         $this->taskFileSystemStack()
-             ->mkdir($this->getDistDir())
              ->mkdir($this->getTargetDir())
              ->mkdir($this->getReportsDir())
              ->run();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * AppserverIo\RoboTasks\Base\loadTasks
+ * AppserverIo\RoboTasks\InputOptionKeys
  *
  * NOTICE OF LICENSE
  *
@@ -18,10 +18,10 @@
  * @link      http://www.appserver.io
  */
 
-namespace AppserverIo\RoboTasks\Base;
+namespace AppserverIo\RoboTasks;
 
 /**
- * The task loader trait for the base tasks.
+ * The default input option keys.
  *
  * @author    Tim Wagner <tw@appserver.io>
  * @copyright 2015 TechDivision GmbH <info@appserver.io>
@@ -29,26 +29,20 @@ namespace AppserverIo\RoboTasks\Base;
  * @link      https://github.com/appserver-io/robo-tasks
  * @link      http://www.appserver.io
  */
-trait loadTasks
+class InputOptionKeys
 {
 
     /**
-     * Returns the extended watch task.
+     * The option key for the source directory.
      *
-     * @return AppserverIo\RoboTasks\Base\Watch
+     * @var string
      */
-    protected function taskWatch()
-    {
-        return $this->task(Watch::class);
-    }
+    const SRC = 'src';
 
     /**
-     * Returns the extended sync task.
+     * The option key for the destination directory.
      *
-     * @return AppserverIo\RoboTasks\Base\Sync
+     * @var string
      */
-    protected function taskSync()
-    {
-        return $this->task(Sync::class);
-    }
+    const DEST = 'dest';
 }

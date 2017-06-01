@@ -20,12 +20,11 @@
 
 namespace AppserverIo\RoboTasks;
 
+use Robo\Robo;
 use Robo\Tasks;
-use AppserverIo\Properties\Properties;
-use AppserverIo\Properties\PropertiesUtil;
 
 /**
- * Abstract implementation of a Robo.li configuration class.
+ * Abstract implementation of a Robo configuration class.
  *
  * @author    Tim Wagner <tw@appserver.io>
  * @copyright 2015 TechDivision GmbH <info@appserver.io>
@@ -37,120 +36,89 @@ abstract class AbstractRoboFile extends Tasks
 {
 
     /**
-     * The build properties.
+     * Load the appserver.io base tasks.
      *
-     * @var \AppserverIo\Appserver\PropertiesInterface
+     * @var \AppserverIo\RoboTasks\Base\loadTasks
      */
-    protected $properties = null;
+    use Base\loadTasks;
 
     /**
-     * Initialize's the tasks.
+<<<<<<< HEAD
+     * Initializes the default configuration.
      */
     public function __construct()
     {
 
-        // initialize the build properties
-        $this->properties = Properties::create();
-
-        // set the default properties
-        $this->properties->setProperty(PropertyKeys::BASE_DIR, getcwd());
-        $this->properties->setProperty(PropertyKeys::SRC_DIR, '${base.dir}/src');
-        $this->properties->setProperty(PropertyKeys::DIST_DIR, '${base.dir}/dist');
-        $this->properties->setProperty(PropertyKeys::VENDOR_DIR, '${base.dir}/vendor');
-        $this->properties->setProperty(PropertyKeys::TARGET_DIR, '${base.dir}/target');
-        $this->properties->setProperty(PropertyKeys::REPORTS_DIR, '${target.dir}/reports');
-
-        // load properties from build.properties file
-        if (file_exists($buildProperties = getcwd() . '/build.properties')) {
-            $this->properties->mergeProperties(Properties::create()->load($buildProperties));
-        }
-
-        // load the default build properties
-        if (file_exists($buildDefaultProperties = getcwd() . '/build.default.properties')) {
-            $this->properties->mergeProperties(Properties::create()->load($buildDefaultProperties));
-        }
-
-        // replace the variables in the properties
-        PropertiesUtil::singleton()->replaceProperties($this->properties);
+        // initialize the default configuration
+        Robo::config()->setDefault(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::SRC), sprintf('%s/src', getcwd()));
+        Robo::config()->setDefault(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::VENDOR), sprintf('%s/vendor', getcwd()));
+        Robo::config()->setDefault(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::TARGET), $targetDir = sprintf('%s/target', getcwd()));
+        Robo::config()->setDefault(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::REPORTS), sprintf('%s/reports', $targetDir));
     }
 
     /**
-     * Return the base directory.
+     * The sync command implementation.
      *
-     * @return string The base directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
+     * @param array $opts The command OptionsHookDispatcher
+     *
+     * @return void
      */
-    protected function getBaseDir()
+    public function sync(array $opts = [InputOptionKeys::SRC => null, InputOptionKeys::DEST => null])
     {
-        return $this->getProperty(PropertyKeys::BASE_DIR);
+        // load the task
+        $task = $this->taskSync();
+
+        // set source directory
+        if (isset($opts[InputOptionKeys::SRC])) {
+            $task->src($opts[InputOptionKeys::SRC]);
+        }
+
+        // set target directory
+        if (isset($opts[InputOptionKeys::DEST])) {
+            $task->dest($opts[InputOptionKeys::DEST]);
+        }
+
+        // run the task
+        $task->run();
     }
 
     /**
-     * Return the source directory.
+     * Returns the source directory.
      *
      * @return string The source directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
      */
     protected function getSrcDir()
     {
-        return $this->getProperty(PropertyKeys::SRC_DIR);
+        return Robo::config()->get(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::SRC));
     }
 
     /**
-     * Return the distribution directory.
-     *
-     * @return string The distribution directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
-     */
-    protected function getDistDir()
-    {
-        return $this->getProperty(PropertyKeys::DIST_DIR);
-    }
-
-    /**
-     * Return the target directory.
-     *
-     * @return string The target directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
-     */
-    protected function getTargetDir()
-    {
-        return $this->getProperty(PropertyKeys::TARGET_DIR);
-    }
-
-    /**
-     * Return the vendor directory.
+     * Returns the vendor directory.
      *
      * @return string The vendor directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
      */
     protected function getVendorDir()
     {
-        return $this->getProperty(PropertyKeys::VENDOR_DIR);
+        return Robo::config()->get(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::VENDOR));
     }
 
     /**
-     * Return the reports directory.
+     * Returns the reports directory.
      *
      * @return string The reports directory
-     * @see \AppserverIo\RoboTasks\AbstractRoboFile::getProperty()
      */
     protected function getReportsDir()
     {
-        return $this->getProperty(PropertyKeys::REPORTS_DIR);
+        return Robo::config()->get(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::REPORTS));
     }
 
     /**
-     * Searches for the property with the specified key in this property list.
+     * Returns the target directory.
      *
-     * @param string $key     Holds the key of the value to return
-     * @param string $section Holds a string with the section name to return the key for (only matters if sections is set to TRUE)
-     *
-     * @return string Holds the value of the passed key
-     * @see \AppserverIo\Properties\Properties::getProperty()
+     * @return string The target directory
      */
-    protected function getProperty($key, $section = null)
+    protected function getTargetDir()
     {
-        return $this->properties->getProperty($key, $section);
+        return Robo::config()->get(sprintf('%s.%s', ConfigurationKeys::DIRS, ConfigurationKeys::TARGET));
     }
 }

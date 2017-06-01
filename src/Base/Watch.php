@@ -58,13 +58,6 @@ class Watch extends BaseTask
     protected $monitor = array();
 
     /**
-     * The instance the task is bound to.
-     *
-     * @var object
-     */
-    protected $bindTo;
-
-    /**
      * The event mask to use, by default we watch ALL events.
      *
      * @var integer
@@ -72,25 +65,15 @@ class Watch extends BaseTask
     protected $eventMask = FilesystemEvent::ALL;
 
     /**
-     * Initialize the task.
-     *
-     * @param object $bindTo The instance the task is bound to
-     */
-    public function __construct($bindTo)
-    {
-        $this->bindTo = $bindTo;
-    }
-
-    /**
      * Set the paths to watch and the callback to execute.
      *
      * @param string|string[] $paths    The paths to watch
-     * @param \Closure        $callable The callback that has to be executed on a change
+     * @param callable        $callable The callback that has to be executed on a change
      *
      * @return \AppserverIo\RoboTasks\Base\Watch The task instance
      * @throws \Exception Is thrown, if the passed paths is nor a string or an array
      */
-    public function monitor($paths, \Closure $callable)
+    public function monitor($paths, callable $callable)
     {
 
         // convert the paths to an array if necessary
@@ -137,11 +120,6 @@ class Watch extends BaseTask
 
         // iterate over the directories that has to be watched
         foreach ($this->monitor as $k => $monitor) {
-            // load the closure
-            /** @var \Closure $closure */
-            $closure = $monitor[1];
-            $closure->bindTo($this->bindTo);
-
             // iterate over the directories that has to be watched
             foreach ($monitor[0] as $i => $dir) {
                 // watch dir given directory
@@ -151,7 +129,7 @@ class Watch extends BaseTask
                 $this->printTaskInfo('Watching {dir} for changes...', ['dir' => $dir]);
 
                 // add the listerner for the directory
-                $watcher->addListener("fs.$k.$i", $closure);
+                $watcher->addListener("fs.$k.$i", $monitor[1]);
             }
         }
 
