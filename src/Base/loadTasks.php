@@ -39,6 +39,16 @@ trait loadTasks
      */
     protected function taskWatch()
     {
-        return $this->task(Watch::class, $this);
+        return $this->task(Watch::class);
+    }
+
+    /**
+     * Returns the extended sync task.
+     *
+     * @return AppserverIo\RoboTasks\Base\Sync
+     */
+    protected function taskSync()
+    {
+        return $this->task(Sync::class);
     }
 }

@@ -19,6 +19,7 @@
  */
 
 use AppserverIo\RoboTasks\AbstractRoboFile;
+use Robo\Robo;
 
 /**
  * Defines the available build tasks.
@@ -80,7 +81,6 @@ class RoboFile extends AbstractRoboFile
     public function prepare()
     {
         $this->taskFileSystemStack()
-             ->mkdir($this->getDistDir())
              ->mkdir($this->getTargetDir())
              ->mkdir($this->getReportsDir())
              ->run();
