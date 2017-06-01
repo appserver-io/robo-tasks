@@ -43,7 +43,6 @@ abstract class AbstractRoboFile extends Tasks
     use Base\loadTasks;
 
     /**
-<<<<<<< HEAD
      * Initializes the default configuration.
      */
     public function __construct()
