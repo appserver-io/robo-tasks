@@ -43,6 +43,7 @@ abstract class AbstractRoboFile extends Tasks
     use Base\loadTasks;
 
     /**
+<<<<<<< HEAD
      * Initializes the default configuration.
      */
     public function __construct()
@@ -64,7 +65,6 @@ abstract class AbstractRoboFile extends Tasks
      */
     public function sync(array $opts = [InputOptionKeys::SRC => null, InputOptionKeys::DEST => null])
     {
-
         // load the task
         $task = $this->taskSync();
 
