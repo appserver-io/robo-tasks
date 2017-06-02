@@ -6,7 +6,7 @@
 
 ## Features
 
-* None
+* Allow PHP >= 5.5.0 in composer.json
 
 # Version 0.1.0
 
